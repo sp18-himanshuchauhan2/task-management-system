@@ -11,34 +11,32 @@ A simple Task Management System built using **Django** and **Django REST Framewo
 - Filter tasks by status or due date
 - Token Authentication
 - Secure, user-specific task access
-- Pagination and optional search support
 
 ---
 
 ## ⚙️ Tech Stack
 
-- Python 3
-- Django 4
+- Python
+- Django
 - Django REST Framework
-- SQLite (default) or PostgreSQL
+- SQLite (default)
 - Postman (for testing)
 
 ---
 
 ## 📁 Project Structure
 
+```bash
 taskmanager/
 │
-├── taskmanager/ # Main project settings
-├── tasks/ # Task app with models, views, serializers, urls
+├── taskmanager/            # Main project settings
+├── tasks/                  # Task app with models, views, serializers, urls
 │
-├── db.sqlite3 # Default database
+├── db.sqlite3              # Default database
 ├── manage.py
 ├── README.md
-└── requirements.txt # (Optional) For deployment
-
-yaml
-Copy code
+└── requirements.txt
+```
 
 ---
 
@@ -49,30 +47,37 @@ Copy code
 ```bash
 git clone https://github.com/yourusername/taskmanager-backend.git
 cd taskmanager-backend
-2. Create a Virtual Environment (Optional but Recommended)
-bash
-Copy code
+```
+
+### 2. Create a Virtual Environment (Optional but Recommended)
+
+```bash
 python -m venv venv
 source venv/bin/activate       # Linux/Mac
 venv\Scripts\activate          # Windows
-3. Install Dependencies
-bash
-Copy code
+```
+
+### 3. Install Dependencies
+
+```bash
 pip install django djangorestframework
-4. Apply Migrations and Run Server
-bash
-Copy code
+```
+
+### 4. Apply Migrations and Run Server
+
+```bash
 python manage.py migrate
 python manage.py runserver
 Visit: http://127.0.0.1:8000/admin
+```
 
-🔐 Authentication
-This project uses Token Authentication via DRF.
+## 🔐 Authentication
+This project uses **Token Authentication** via DRF.
+<ul>
+    <li>After registering or logging in, a token will be returned.</li>
+    <li>Include it in Authorization header of future requests:</li>
+</ul>
 
-After registering or logging in, a token will be returned.
-
-Include it in Authorization header of future requests:
-
-makefile
-Copy code
+```makefile
 Authorization: Token your_token_here
+```
