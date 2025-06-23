@@ -82,3 +82,12 @@ This project uses **Token Authentication** via DRF.
 ```makefile
 Authorization: Token xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
+
+## 📮 API Endpoints
+### 🧑 User Auth
+
+| Endpoint         | Method | Description         |
+| ---------------- | ------ | ------------------- |
+| `/api/register/` | POST   | Register new user   |
+| `/api/login/`    | POST   | Login and get token |
+
