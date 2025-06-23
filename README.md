@@ -91,3 +91,15 @@ Authorization: Token xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 | `/api/register/` | POST   | Register new user   |
 | `/api/login/`    | POST   | Login and get token |
 
+### ✅ Tasks
+| Endpoint                            | Method | Description                    |
+| ----------------------------------- | ------ | ------------------------------ |
+| `/api/tasks/`                       | GET    | List all tasks (auth required) |
+| `/api/tasks/`                       | POST   | Create a task                  |
+| `/api/tasks/<id>/`                  | GET    | View a task                    |
+| `/api/tasks/<id>/`                  | PUT    | Update a task                  |
+| `/api/tasks/<id>/`                  | DELETE | Delete a task                  |
+| `/api/tasks/?status=done`           | GET    | Filter tasks by status         |
+| `/api/tasks/?due_before=YYYY-MM-DD` | GET    | Filter tasks by due date       |
+
+
