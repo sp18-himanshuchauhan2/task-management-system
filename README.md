@@ -31,7 +31,8 @@ taskmanager/
 │
 ├── taskmanager/            # Main project settings
 ├── tasks/                  # Task app with models, views, serializers, urls
-│
+│               
+├── .gitignore
 ├── db.sqlite3              # Default database
 ├── manage.py
 ├── README.md
@@ -45,8 +46,8 @@ taskmanager/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/taskmanager-backend.git
-cd taskmanager-backend
+git clone https://github.com/sp18-himanshuchauhan2/task-management-system.git
+cd task-management-system
 ```
 
 ### 2. Create a Virtual Environment (Optional but Recommended)
@@ -60,7 +61,7 @@ venv\Scripts\activate          # Windows
 ### 3. Install Dependencies
 
 ```bash
-pip install django djangorestframework
+pip install -r requirements.txt
 ```
 
 ### 4. Apply Migrations and Run Server
@@ -68,7 +69,7 @@ pip install django djangorestframework
 ```bash
 python manage.py migrate
 python manage.py runserver
-Visit: http://127.0.0.1:8000/admin
+Visit: http://127.0.0.1:8000
 ```
 
 ## 🔐 Authentication
@@ -79,5 +80,5 @@ This project uses **Token Authentication** via DRF.
 </ul>
 
 ```makefile
-Authorization: Token your_token_here
+Authorization: Token xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
