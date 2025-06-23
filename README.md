@@ -92,6 +92,7 @@ Authorization: Token xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 | `/api/login/`    | POST   | Login and get token |
 
 ### ✅ Tasks
+
 | Endpoint                            | Method | Description                    |
 | ----------------------------------- | ------ | ------------------------------ |
 | `/api/tasks/`                       | GET    | List all tasks (auth required) |
