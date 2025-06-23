@@ -5,5 +5,5 @@ urlpatterns = [
     path('register/', register_user, name='register'),
     path('login/', login_user, name='login'),
     path('tasks/', TaskListCreateView.as_view(), name='task-list-create'),
-    path('tasks-detail', TaskDetailView.as_view(), name='task-detail'),
+    path('tasks/<int:pk>/', TaskDetailView.as_view(), name='task-detail'),
 ]
