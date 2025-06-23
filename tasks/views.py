@@ -19,3 +19,16 @@ def register_user(request):
         return Response({'token': token.key})
     
     return Response(serializer.errors)
+
+@api_view(['POST'])
+def login_user(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
+    user = authenticate(username=username, password=password)
+    
+    if user:
+        token, _ = Token.objects.get_or_create(user=user)
+        return Response({'token': token.key})
+    
+    return Response({'error': 'Invalid credentials'})
+
