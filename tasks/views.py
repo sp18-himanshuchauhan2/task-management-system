@@ -1,10 +1,13 @@
 from django.shortcuts import render
-from .serializers import RegisterSerializer
+from .serializers import RegisterSerializer, TaskSerializer
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework import generics, filters
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
+from .models import Task
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 
@@ -31,4 +34,34 @@ def login_user(request):
         return Response({'token': token.key})
     
     return Response({'error': 'Invalid credentials'})
+
+@permission_classes([IsAuthenticated])
+class TaskListCreateView(generics.ListCreateAPIView):
+    serializer = TaskSerializer
+
+    def get_querySet(self):
+        user = self.request.user
+        queryset = Task.objects.filter(assigned_to=user)
+
+        status = self.request.query_params.get('status')
+        due_before = self.request.query_params.get('due_before')
+
+        if status:
+            queryset = queryset.filter(status=status)
+
+        if due_before:
+            queryset = queryset.filter(due_date__lte=due_before)
+
+        return queryset
+    
+    def perform_create(self, serializer):
+        serializer.save(assigned_to=self.request.user)
+
+@permission_classes([IsAuthenticated])
+class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer = TaskSerializer
+
+    def get_queryset(self):
+        return Task.objects.filter(assigned_to=self.request.user)
+    
 
