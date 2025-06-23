@@ -37,9 +37,9 @@ def login_user(request):
 
 @permission_classes([IsAuthenticated])
 class TaskListCreateView(generics.ListCreateAPIView):
-    serializer = TaskSerializer
+    serializer_class = TaskSerializer
 
-    def get_querySet(self):
+    def get_queryset(self):
         user = self.request.user
         queryset = Task.objects.filter(assigned_to=user)
 
@@ -59,7 +59,7 @@ class TaskListCreateView(generics.ListCreateAPIView):
 
 @permission_classes([IsAuthenticated])
 class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
-    serializer = TaskSerializer
+    serializer_class = TaskSerializer
 
     def get_queryset(self):
         return Task.objects.filter(assigned_to=self.request.user)
