@@ -6,5 +6,5 @@ urlpatterns = [
     path('login/', login_user, name='login'),
     path('tasks/', TaskListCreateView.as_view(), name='task-list-create'),
     path('tasks/<int:pk>/', TaskDetailView.as_view(), name='task-detail'),
-      path('tasks/timeline/', TaskTimelineView.as_view(), name='task-timeline'),
+    path('tasks/timeline/', TaskTimelineView.as_view(), name='task-timeline'),
 ]
