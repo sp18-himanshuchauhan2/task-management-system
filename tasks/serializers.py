@@ -18,6 +18,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
     
 class TaskSerializer(serializers.ModelSerializer):
+    assigned_to = serializers.ReadOnlyField(source='assigned_to.username')
+
     class Meta:
         model = Task
         fields = '__all__'
