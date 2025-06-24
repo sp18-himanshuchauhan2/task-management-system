@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework', # added manually
     'tasks', # added manually
     'rest_framework.authtoken', # for token authentication
+    'rest_framework_simplejwt', # for jwt authentication
 
 ]
 
