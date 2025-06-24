@@ -8,6 +8,8 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from .models import Task
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
+from datetime import date, timedelta
 
 # Create your views here.
 
@@ -64,4 +66,23 @@ class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         return Task.objects.filter(assigned_to=self.request.user)
     
+# Add new class
+@permission_classes([IsAuthenticated])
+class TaskTimelineView(APIView):
+    def get(self, request):
+        user = request.user
+        today =  date.today()
+        yesterday = today - timedelta(days=1)
+        tomorrow = today + timedelta(days=1)
+
+        tasks_yest = Task.objects.filter(assigned_to=user, due_date=yesterday)
+        tasks_to = Task.objects.filter(assigned_to=user, due_date=today)
+        task_tom = Task.objects.filter(assigned_to=user, due_date=tomorrow)
+
+        data = {
+            'yesterday': TaskSerializer(tasks_yest, many=True).data,
+            'today': TaskSerializer(tasks_to, many=True).data,
+            'tomorrow': TaskSerializer(task_tom, many=True).data
+        }
+        return Response(data)
 
