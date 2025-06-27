@@ -23,8 +23,7 @@ class Task(models.Model):
     priority = models.CharField(max_length=10, choices=PRIORITY, default='medium')
     due_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
+    file = models.FileField(upload_to='uploads/', blank=True, null=True)
 
     def __str__(self):
         return self.title
-
-
