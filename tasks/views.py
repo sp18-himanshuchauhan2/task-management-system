@@ -88,8 +88,8 @@ class TaskListCreateView(APIView):
     def post(self, request):
         data = request.data
         user = request.user
-        serializer = TaskSerializer(data)
-        if serializer.isvalid():
+        serializer = TaskSerializer(data=data)
+        if serializer.is_valid():
             serializer.save(assigned_to=user)
             return Response(serializer.data)
         return Response(serializer.errors)
